@@ -21,3 +21,4 @@ export const UPDATE_GAME = 'app/Breakout/UPDATE_GAME';
 export const UPDATE_PADDLE = 'app/Breakout/UPDATE_PADDLE';
 export const TOGGLE_TEST_MODE = 'app/Breakout/TOGGLE_TEST_MODE';
 export const RELEASE_BALL = 'app/Breakout/RELEASE_BALL';
+export const UPDATE_PADDLE_TOUCH = 'app/Breakout/UPDATE_PADDLE_TOUCH';

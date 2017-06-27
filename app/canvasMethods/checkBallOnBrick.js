@@ -12,24 +12,6 @@ function getColRow(ballX, ballY, brickWidth, brickHeight) {
   const row = Math.floor(ballY / brickHeight);
   return [col, row];
 }
-// export default function checkBallOnBrick(brickWidth, brickHeight, ballX, ballY, ballSpeedX, ballSpeedY, bricks, columns) {
-//   const ballColRow = getColRow(ballX, ballY, brickWidth, brickHeight);
-//   const ballIndex = getBallIndex(ballColRow, columns);
-//   const previousBallColRow = getColRow(ballX - ballSpeedX, ballY - ballSpeedY, brickWidth, brickHeight);
-//   const previousBallIndex = getBallIndex(previousBallColRow, columns);
-//   if (ballIndex < bricks.size && getActive(ballIndex, bricks)) {
-//     let newBallSpeedX = ballSpeedX;
-//     let newBallSpeedY = ballSpeedY;
-//     if (ballColRow[0] !== previousBallColRow[0]) {
-//       newBallSpeedX = ballSpeedX * -1;
-//     }
-//     if (ballColRow[1] !== previousBallColRow[1]) {
-//       newBallSpeedY = ballSpeedY * -1;
-//     }
-//     return [ballIndex, newBallSpeedX, newBallSpeedY];
-//   }
-//   return false;
-// }
 
 export default function checkBallOnBrick(brickWidth, brickHeight, ballX, ballY, ballSpeedX, ballSpeedY, bricks, columns) {
   const ballColRow = getColRow(ballX, ballY, brickWidth, brickHeight);

@@ -15,6 +15,7 @@ import {
   UPDATE_PADDLE,
   TOGGLE_TEST_MODE,
   RELEASE_BALL,
+  UPDATE_PADDLE_TOUCH,
 } from './constants';
 
 export function resetGame() {
@@ -75,5 +76,12 @@ export function toggleTestMode() {
 export function releaseBall() {
   return {
     type: RELEASE_BALL,
+  };
+}
+
+export function updatePaddleTouch(payload) {
+  return {
+    type: UPDATE_PADDLE_TOUCH,
+    payload,
   };
 }

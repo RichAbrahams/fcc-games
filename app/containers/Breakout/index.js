@@ -28,6 +28,7 @@ export class Breakout extends React.PureComponent { // eslint-disable-line react
     this.mouseDown = this.mouseDown.bind(this);
     this.mainLoop = this.mainLoop.bind(this);
     this.drawCanvas = this.drawCanvas.bind(this);
+    this.handleTouch = this.handleTouch.bind(this)
   }
 
   componentWillMount() {
@@ -135,6 +136,13 @@ export class Breakout extends React.PureComponent { // eslint-disable-line react
     }
   }
 
+  handleTouch(e) {
+    const bounding = this.canvas.getBoundingClientRect();
+    const newPosition = e.touches[0].clientX - bounding.left;
+    this.props.updatePaddleTouch(newPosition);
+  }
+
+
   render() {
     const { gameState, canvasWidth, canvasHeight, togglePause } = this.props;
     return (
@@ -148,6 +156,7 @@ export class Breakout extends React.PureComponent { // eslint-disable-line react
           ref={(c) => { this.canvas = c; }}
           onMouseMove={this.updateMouse}
           onMouseDown={this.mouseDown}
+          onTouchMove={this.handleTouch}
         />}
         {gameState === PAUSED && <BreakoutPause {...this.props} />}
         {gameState === GAME_OVER && <BreakoutGameOver {...this.props} />}
@@ -215,6 +224,7 @@ function mapDispatchToProps(dispatch) {
     togglePause: () => dispatch(actions.togglePause()),
     updateGame: () => dispatch(actions.updateGame()),
     updatePaddle: (payload) => dispatch(actions.updatePaddle(payload)),
+    updatePaddleTouch: (payload) => dispatch(actions.updatePaddleTouch(payload)),
     showLevelIntro: () => dispatch(actions.showLevelIntro()),
     showGameOver: () => dispatch(actions.showGameOver()),
     showGameWon: () => dispatch(actions.showGameWon()),

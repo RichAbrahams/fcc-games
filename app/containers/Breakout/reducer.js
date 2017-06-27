@@ -23,6 +23,7 @@ import {
   UPDATE_PADDLE,
   TOGGLE_TEST_MODE,
   RELEASE_BALL,
+  UPDATE_PADDLE_TOUCH,
 } from './constants';
 
 import Oscillator from '../../canvasMethods/Oscillator';
@@ -212,6 +213,12 @@ function breakoutReducer(state = initialState, action) {
 
     case RELEASE_BALL: {
       return state.merge({ ballSpeedY: -10, ballStartPosition: false });
+    }
+    case UPDATE_PADDLE_TOUCH : {
+      const paddleWidth = state.get('paddleWidth');
+      const mouseX = action.payload;
+      const paddlePosition = mouseX - (paddleWidth / 2);
+      return state.merge({ paddleX: paddlePosition });
     }
     default:
       return state;
