@@ -57,7 +57,7 @@ const initialState = fromJS({
   brickWidth: 0,
   brickHeight: 0,
   score: 0,
-  level: 3,
+  level: 0,
   lives: 3,
   bricksRemaining: 0,
   testMode: false,
