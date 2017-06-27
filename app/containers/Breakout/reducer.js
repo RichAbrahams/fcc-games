@@ -52,7 +52,7 @@ const initialState = fromJS({
   paddleX: 400,
   paddleY: 570,
   paddleDistanceFromBottom: 60,
-  framesPerSecond: 30,
+  framesPerSecond: 25,
   bricks: [],
   brickGap: 2,
   brickWidth: 0,

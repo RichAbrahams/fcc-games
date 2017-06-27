@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #222;
+  background: #21668a;
   color: white;
   font-family: 'Luckiest Guy', cursive;
   -webkit-font-smoothing: antialiased;

@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import { ScoreWrapper, ScoreInnerWrapper, Icon, Span } from './styles';
+import { ScoreWrapper, ScoreInnerWrapper, Icon, Span, Section } from './styles';
 
 
 function BreakoutStatusBar(props) {
@@ -14,18 +14,18 @@ function BreakoutStatusBar(props) {
   for (let i = 0; i < lives; i += 1) {
     livesIcons.push(<Icon name="user" key={i} />);
   }
+  const hasLevel = level > 0 ? <Section><Span>Level: {level}</Span></Section> : null;
+
   return (
     <ScoreWrapper width={canvasWidth}>
       <ScoreInnerWrapper>
-        <div>
+        <Section>
           <Span>Lives: {livesIcons}</Span>
-        </div>
-        <div>
-          <Span>Level: {level}</Span>
-        </div>
-        <div>
+        </Section>
+        {hasLevel}
+        <Section>
           <Span>Score: {score}</Span>
-        </div>
+        </Section>
       </ScoreInnerWrapper>
     </ScoreWrapper>
   );

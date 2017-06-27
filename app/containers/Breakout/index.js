@@ -12,6 +12,8 @@ import BreakoutStart from 'components/BreakoutStart';
 import BreakoutPause from 'components/BreakoutPause';
 import BreakoutLevel from 'components/BreakoutLevel';
 import BreakoutGameOver from 'components/BreakoutGameOver';
+import BreakoutGameWon from 'components/BreakoutGameWon';
+import CanvasBackground from 'components/CanvasBackground';
 import PageHeader from 'components/PageHeader';
 import PageWrapper from 'components/PageWrapper';
 import fillRect from 'canvasMethods/fillRect';
@@ -28,7 +30,7 @@ export class Breakout extends React.PureComponent { // eslint-disable-line react
     this.mouseDown = this.mouseDown.bind(this);
     this.mainLoop = this.mainLoop.bind(this);
     this.drawCanvas = this.drawCanvas.bind(this);
-    this.handleTouch = this.handleTouch.bind(this)
+    this.handleTouch = this.handleTouch.bind(this);
   }
 
   componentWillMount() {
@@ -69,12 +71,12 @@ export class Breakout extends React.PureComponent { // eslint-disable-line react
         clearInterval(timer);
         return;
       }
-      if (!this.props.bricksRemaining && this.props.level <= 5) {
-        showLevelIntro();
+      if (!this.props.bricksRemaining && this.props.level === 5) {
+        showGameWon();
         return;
       }
-      if (!this.props.bricksRemaining && this.props.level > 5) {
-        showGameWon();
+      if (!this.props.bricksRemaining && this.props.level <= 5) {
+        showLevelIntro();
         return;
       }
       if (!this.props.lives) {
@@ -149,17 +151,20 @@ export class Breakout extends React.PureComponent { // eslint-disable-line react
       <PageWrapper>
         <PageHeader>BREAKOUT</PageHeader>
         <BreakoutStatusBar width={canvasWidth} {...this.props} />
-        {gameState === INTRO && <BreakoutStart {...this.props} />}
-        {gameState === LEVEL_INTRO && <BreakoutLevel {...this.props} />}
-        {gameState === PLAY && <canvas
-          width={canvasWidth} height={canvasHeight}
-          ref={(c) => { this.canvas = c; }}
-          onMouseMove={this.updateMouse}
-          onMouseDown={this.mouseDown}
-          onTouchMove={this.handleTouch}
-        />}
-        {gameState === PAUSED && <BreakoutPause {...this.props} />}
-        {gameState === GAME_OVER && <BreakoutGameOver {...this.props} />}
+        <CanvasBackground width={canvasWidth} height={canvasHeight}>
+          {gameState === INTRO && <BreakoutStart {...this.props} />}
+          {gameState === LEVEL_INTRO && <BreakoutLevel {...this.props} />}
+          {gameState === PLAY && <canvas
+            width={canvasWidth} height={canvasHeight}
+            ref={(c) => { this.canvas = c; }}
+            onMouseMove={this.updateMouse}
+            onMouseDown={this.mouseDown}
+            onTouchMove={this.handleTouch}
+          />}
+          {gameState === PAUSED && <BreakoutPause {...this.props} />}
+          {gameState === GAME_OVER && <BreakoutGameOver {...this.props} />}
+          {gameState === GAME_WON && <BreakoutGameWon {...this.props} />}
+        </CanvasBackground>
       </PageWrapper>
     );
   }
